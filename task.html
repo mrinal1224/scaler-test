@@ -1,0 +1,65 @@
+<!-- Problem Description 
+Write a program in JavaScript to do the below mentioned task:
+
+Fix the list of elements by adding the missing element using DOM methods like querySelectorAll and insertBefore.
+-->
+
+<!-- Hints :
+Use querySelectorAll to get access to all <li> tags in an array
+Use the array of <li> to get access to target <li> elements
+Use createElement to create a <li> element
+Use insertBefore to add the element in the correct position
+ -->
+
+<!-- Test Cases :
+1. Verify that the missing <li> element has been added
+-->
+
+<!-- Boilerplate -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+    </ul>
+  </body>
+</html>
+
+<!-- Catch:
+1. Not Parsing the Integer
+2. Not accessing the Parent Node of Element 
+Note: To Avoid Last Number Error -> Extra Variable for Last Number is used -->
+
+<script>
+  // Fix the list by inserting the missing element
+  const list = document.querySelector("ul");
+  const elements = list.querySelectorAll("li");
+
+  let lastNumber = 0;
+  for (let i = 0; i < elements.length; i++) {
+    const currentNumber = parseInt(elements[i].innerText);
+    if (currentNumber !== lastNumber + 1) {
+      const newCreate = document.createElement("li");
+      newCreate.innerText = lastNumber + 1;
+      list.insertBefore(newCreate, elements[i]);
+      lastNumber++;
+    }
+    lastNumber = currentNumber;
+  }
+</script>
